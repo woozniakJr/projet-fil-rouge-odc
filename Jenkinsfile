@@ -7,10 +7,10 @@ pipeline {
         BACKEND_IMAGE = "${DOCKER_USER}/projetfilrouge_backend"
         FRONTEND_IMAGE = "${DOCKER_USER}/projetfilrouge_frontend"
         MIGRATE_IMAGE = "${DOCKER_USER}/projetfilrouge_migrate"
-        SONAR_HOST_URL = 'https://ce54-41-214-71-39.ngrok-free.app/github-webhook
+        SONAR_HOST_URL = ' https://316e-41-214-71-39.ngrok-free.app/github-webhook'
 '
-        SONAR_BACK_TOKEN = credentials('bebe')
-        SONAR_FRONT_TOKEN = credentials('bebe')
+        SONAR_BACK_TOKEN = credentials('sonar-scan')
+        SONAR_FRONT_TOKEN = credentials('sonar-scan')
     }
 
     stages {
@@ -39,13 +39,11 @@ pipeline {
         stage('Analyse SonarQube Backend') {
             steps {
                 sh '''
-                    sonar-scanner \
-                        -Dsonar.projectKey=test_sonar_backend_fil_rouge \
-                        -Dsonar.sources=Backend \
-                        -Dsonar.exclusions=**/migrations/**,**/venv/**,**/.venv/**,**/__pycache__/** \
-                        -Dsonar.host.url=$SONAR_HOST_URL \
-                        -Dsonar.login=$SONAR_BACK_TOKEN \
-                        -Dsonar.python.version=3
+                   sonar-scanner \
+                         -Dsonar.projectKey=backend \
+                         -Dsonar.sources= Backend \
+                         -Dsonar.host.url=http://localhost:9000 \
+                         -Dsonar.token=sqp_8bfd8bad6f38ab4299fd9464931f5f5b64082329
                 '''
             }
         }
@@ -55,7 +53,7 @@ pipeline {
                 dir('Frontend') {
                     sh '''
                         sonar-scanner \
-                            -Dsonar.projectKey=test_sonar_frontend_fil_rouge \
+                            -Dsonar.projectKey=frontend \
                             -Dsonar.sources=src \
                             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/** \
                             -Dsonar.host.url=$SONAR_HOST_URL \
