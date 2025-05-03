@@ -17,7 +17,7 @@ pipeline {
         stage('Cloner le dépôt') {
             steps {
                 git branch: 'master',
-                    url: 'https://github.com/zouboss/projet_fil_rouge.git'
+                    url: 'https://github.com/woozniakJr/projet-fil-rouge-odc.git'
             }
         }
 
@@ -95,12 +95,12 @@ pipeline {
 
     post {
         success {
-            mail to: 'alassanebenzecoly@gmail.com',
+            mail to: 'ngommychild@gmail.com',
                  subject: "✅ Déploiement local réussi",
                  body: "L'application a été déployée localement avec succès."
         }
         failure {
-            mail to: 'alassanebenzecoly@gmail.com',
+            mail to: 'ngommychild@gmail.com',
                  subject: "❌ Échec du pipeline Jenkins",
                  body: "Une erreur s’est produite, merci de vérifier Jenkins."
         }
