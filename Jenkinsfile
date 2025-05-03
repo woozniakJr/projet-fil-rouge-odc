@@ -3,19 +3,19 @@ pipeline {
 
     environment {
         PATH = "/opt/sonar-scanner/bin:$PATH"
-        DOCKER_USER = 'zouboss'
+        DOCKER_USER = 'mouhamed2555'
         BACKEND_IMAGE = "${DOCKER_USER}/projetfilrouge_backend"
         FRONTEND_IMAGE = "${DOCKER_USER}/projetfilrouge_frontend"
         MIGRATE_IMAGE = "${DOCKER_USER}/projetfilrouge_migrate"
         SONAR_HOST_URL = 'https://68f3-41-82-155-229.ngrok-free.app'
-        SONAR_BACK_TOKEN = credentials('projet_fil_rouge_cred')
-        SONAR_FRONT_TOKEN = credentials('projet_fil_rouge_cred')
+        SONAR_BACK_TOKEN = credentials('bebe')
+        SONAR_FRONT_TOKEN = credentials('bebe')
     }
 
     stages {
         stage('Cloner le dépôt') {
             steps {
-                git branch: 'main',
+                git branch: 'master',
                     url: 'https://github.com/zouboss/projet_fil_rouge.git'
             }
         }
@@ -75,7 +75,7 @@ pipeline {
 
         stage('Push des images sur Docker Hub') {
             steps {
-                withDockerRegistry([credentialsId: 'docker_cred', url: '']) {
+                withDockerRegistry([credentialsId: 'dimanche', url: '']) {
                     sh 'docker push $BACKEND_IMAGE:latest'
                     sh 'docker push $FRONTEND_IMAGE:latest'
                     sh 'docker push $MIGRATE_IMAGE:latest'
