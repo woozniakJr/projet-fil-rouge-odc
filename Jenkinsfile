@@ -8,7 +8,7 @@ pipeline {
         FRONTEND_IMAGE = "${DOCKER_USER}/projetfilrouge_frontend"
         MIGRATE_IMAGE = "${DOCKER_USER}/projetfilrouge_migrate"
         SONAR_HOST_URL = ' https://316e-41-214-71-39.ngrok-free.app/github-webhook'
-'
+
         SONAR_BACK_TOKEN = credentials('sonar-scan')
         SONAR_FRONT_TOKEN = credentials('sonar-scan')
     }
@@ -44,7 +44,7 @@ pipeline {
                          -Dsonar.sources= Backend \
                          -Dsonar.host.url=http://localhost:9000 \
                          -Dsonar.token=sqp_8bfd8bad6f38ab4299fd9464931f5f5b64082329
-                '''
+                    '''
             }
         }
 
