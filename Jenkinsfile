@@ -101,7 +101,7 @@ pipeline {
         }
         failure {
             mail to: 'ngommychild@gmail.com',
-                 subject: "❌ Échec du pipeline Jenkins",
+                 subject: " Échec du pipeline Jenkins",
                  body: "Une erreur s’est produite, merci de vérifier Jenkins."
         }
     }
